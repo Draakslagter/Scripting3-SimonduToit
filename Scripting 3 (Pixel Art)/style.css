@@ -1,34 +1,33 @@
 #art {
-    display: table;
-    border-spacing: 1px;
-    background-color: black;
-    border: 5px solid black;
-  }
-  .row {
-    display: table-row;
-  }
-  
-  .pixel {
-    display: table-cell;
-    background-color: white;
-    width: 40px;
-    height: 40px;
-    border: 1px solid black;
-  }
-  .pen {
-    display: inline-block;
-    width: 40px;
-    height: 40px;
-    border: 2px solid black;
-  }
-  .button {
-    background-color: #04AA6D; /* Green */
-    border: none;
-    color: white;
-    padding: 15px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-  }
-  
+  display: table;
+  border-spacing: 1px;
+  background-color: black;
+  border: 5px solid black;
+}
+.row {
+  display: table-row;
+}
+
+.pixel {
+  display: table-cell;
+  background-color: white;
+  width: 40px;
+  height: 40px;
+  border: 1px solid black;
+}
+.pen {
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  border: 2px solid black;
+}
+.button {
+  background-color: #04AA6D; /* Green */
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}

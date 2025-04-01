@@ -1,0 +1,13 @@
+
+#smallBox {
+  width: 100px;
+  height: 100px;
+  background: red;
+  transition-property: width, height, background-color;
+  transition-duration: 2s;
+}
+#smallBox:hover {
+  width: 300px;
+  height: 400px;
+  background-color: blue;
+}
