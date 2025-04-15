@@ -86,7 +86,7 @@ ctx.lineCap = "round"
 ctx.lineWidth = 10;
 ctx.moveTo(620, 350);
 ctx.arcTo(650, 375, 620, 400, 35);
-ctx.arcTo(610, 350, 620 ,450, 35);
+// ctx.arcTo(610, 350, 620 ,450, 35);
 // ctx.lineTo(660, 375);
 
 // ctx.lineTo(705, 350);
