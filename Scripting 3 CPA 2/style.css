@@ -10,9 +10,61 @@
      width: 500px;
     height: 750px;
     border: 5px solid black;
-    background-color: lightblue;
+    
+}
+#background{
+    width: 500px;
+    height: 750px;
+    position: absolute;
+    background-image: url(Assets/Sprites/Background/Background.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    z-index: -5;
 }
 
+.clouds{
+    width: 1000px;
+    height: 100px;
+    background-image: url(Assets/Sprites/Background/Clouds1.png);
+    background-size: contain;
+    transform: rotate(90deg);
+    position: absolute;
+    left: 260px;
+    top: 225px;
+    background-size:contain;
+   z-index: -4;
+   animation: clouds 1s linear infinite;
+}
+.cright{
+    transform: rotate(90deg) scaleY(-1);
+    left: 655px;
+    animation-delay: 2.5s;
+}
+
+.building{
+    width: 50px;
+    height: 1000px;
+    background-color: darkgray;
+    position: absolute;
+    z-index: -3;
+    animation: clouds 1s linear infinite;
+}
+.window{
+    width: 25px;
+    height: 30px;
+    margin: auto;
+    width: 50%;
+    background-color: lightblue;
+    z-index: -2;
+}
+@keyframes clouds{
+    0%{
+        top: 250px;
+    }
+    100%{
+        top: 429px;
+    }
+}
 /* Text Styling */
 .text{
     font-family: 'Courier New', Courier, monospace;
@@ -53,6 +105,7 @@ position: absolute;
     position: relative;
 }
 .startgame{
+    display: block;
     top: 50px;
     left: 50px;
 }
@@ -60,11 +113,17 @@ position: absolute;
 #character{
     width: 75px;
     height: 50px;
-    background-color: red;
+    background-image: url("Assets/Sprites/Froggy/Run/Run0.png");
+    background-size: contain;
+    background-repeat: no-repeat;
     position: relative;
     top: 600px; 
+    transform: rotate(90deg) scaleX(-1);
 }
 
+.animaterun{
+    animation: run 0.5s infinite;
+}
 .animateright{
     animation: jumpright 1s linear;
 }
@@ -72,23 +131,98 @@ position: absolute;
     animation: jumpleft 1s linear;
 }
 
+
+@keyframes run{
+    0%{
+        background-image: url("Assets/Sprites/Froggy/Run/Run0.png");
+    }
+    10%{
+        background-image: url("Assets/Sprites/Froggy/Run/Run1.png");
+    }
+    20%{
+        background-image: url("Assets/Sprites/Froggy/Run/Run2.png");
+    }
+    30%{
+        background-image: url("Assets/Sprites/Froggy/Run/Run3.png");
+    }
+    40%{
+        background-image: url("Assets/Sprites/Froggy/Run/Run4.png");
+    }
+    50%{
+        background-image: url("Assets/Sprites/Froggy/Run/Run5.png");
+    }
+    60%{
+        background-image: url("Assets/Sprites/Froggy/Run/Run6.png");
+    }
+    70%{
+        background-image: url("Assets/Sprites/Froggy/Run/Run7.png");
+    }
+    80%{
+        background-image: url("Assets/Sprites/Froggy/Run/Run8.png");
+    }
+    90%{
+        background-image: url("Assets/Sprites/Froggy/Run/Run9.png");
+    }
+    95%{
+        background-image: url("Assets/Sprites/Froggy/Run/Run10.png");
+    }
+    100%{
+        background-image: url("Assets/Sprites/Froggy/Run/Run11.png");
+    }
+}
 @keyframes jumpright
 {
     0%{left:0px;
-        top: 600px;}
+        top: 600px;
+        background-image: url("Assets/Sprites/Froggy/Jump/Jump0.png");
+        transform: scaleX(1);
+    }
+        20%{
+            background-image: url("Assets/Sprites/Froggy/Jump/Jump1.png");
+        }
+        40%{
+            background-image: url("Assets/Sprites/Froggy/Jump/Jump2.png");
+        }
     50%{left: 250px;
         top: 550px;}
+        60%{
+            background-image: url("Assets/Sprites/Froggy/Jump/Jump3.png");
+        }
+        80%{
+            background-image: url("Assets/Sprites/Froggy/Jump/Jump4.png");
+        }
     100%{left: 425px;
-        top: 600px;}
+        top: 600px;
+        background-image: url("Assets/Sprites/Froggy/Jump/Jump5.png");
+        transform: scaleX(1);
+    }
 }
 @keyframes jumpleft
 {
-    0%{left: 425px;
-        top: 600px;}
+    0%{left:425px;
+        top: 600px;
+        background-image: url("Assets/Sprites/Froggy/Jump/Jump0.png");
+        transform: scaleX(-1);
+    }
+        20%{
+            background-image: url("Assets/Sprites/Froggy/Jump/Jump1.png");
+        }
+        40%{
+            background-image: url("Assets/Sprites/Froggy/Jump/Jump2.png");
+        }
     50%{left: 250px;
         top: 550px;}
-    100%{left:0px;
-        top: 600px;}
+        60%{
+            background-image: url("Assets/Sprites/Froggy/Jump/Jump3.png");
+        }
+        80%{
+            background-image: url("Assets/Sprites/Froggy/Jump/Jump4.png");
+        }
+    100%{left: 0px;
+        top: 600px;
+        background-image: url("Assets/Sprites/Froggy/Jump/Jump5.png");
+        transform: scaleX(-1);
+    }
 }
 
 /* Obstacle Styling */
@@ -100,7 +234,8 @@ position: absolute;
     position: relative;
     animation: none;
 }
-.right{
+.bright{
+    transform: rotate(90deg) scaleY(-1);
     left: 450px;
     animation-delay: 2.5s;
 }
