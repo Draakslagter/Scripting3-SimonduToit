@@ -6,31 +6,38 @@ const gameOverDisplay = document.querySelector(".gameover");
 const startGameButton = document.querySelector(".startgame")
 
 let gameOver = false;
-let animationSpeed = 5;
+let blockSpeed = 2;
 let score = 0;
 let scoreInterval = 0;
 
+const gameSpeed = 10;
+
 function StartGame() {
+    console.log("starting");
     gameOver = false;
     gameOverDisplay.style.display = "none";
     score = 0;
     scoreInterval = 0;
     scoreDisplay.innerHTML = "Score: 0";
-    animationSpeed = 5;
+    blockSpeed = 2;
     startGameButton.style.display = "none";
     character.classList.add("animaterun");
-    SetBlockSpeed();
+    moveBlock();
 }
 
-function SetBlockSpeed() {
+function moveBlock() {
     for (let block of blocks) {
-        block.style.animation = "block " + animationSpeed + "s infinite linear";
-        let rect = block.getBoundingClientRect();
-        if (rect.left >= 200) {
-            block.style.animationDelay = (animationSpeed * 0.5) + "s";
-        }
-        console.log(block.style.animation);
+    const currentTop = parseInt(window.getComputedStyle(block).getPropertyValue('top'));
+    block.style.top = (currentTop + blockSpeed) + 'px';
+
+    if (currentTop > 800) {
+        block.style.top = '-500px';
     }
+    }
+    if (gameOver == false)
+        {
+            setTimeout(moveBlock, gameSpeed);
+        }
 }
 
 function Jump() {
@@ -62,8 +69,7 @@ function UpdateScore() {
     scoreInterval++;
     scoreDisplay.innerHTML = "Score: " + score;
     if (scoreInterval == 10) {
-        animationSpeed -= 0.1;
-        SetBlockSpeed();
+        blockSpeed += 0.5;
         scoreInterval = 0;
     }
 }
@@ -74,12 +80,11 @@ let checkDead = setInterval(function () {
         blockLeft = parseInt(window.getComputedStyle(block).getPropertyValue("left"));
         blockTop = parseInt(window.getComputedStyle(block).getPropertyValue("top"));
         leftright = blockLeft - characterLeft;
-        if (leftright >= 0 && leftright <= 25 && blockTop && blockTop >= 500 && blockTop <= 560) {
+        if (leftright >= 5 && leftright <= 40 && blockTop && blockTop >= 600 && blockTop <= 650) {
             gameOverDisplay.style.display = "block";
             startGameButton.style.display = "block";
-            for (let block of blocks) {
-                block.style.animation = "none";
-            }
+            gameOver = true;
+            block.style.top = '-500px';
         }
     }
 }, 10);
