@@ -222,16 +222,47 @@
 #menu{
     margin: auto;
     width: 500px;
-    height: 200px;
+    height: 175px;
     border: 5px solid black;
     background-color: grey;
     z-index: -5;
 }
-.box{
-    width: 500px;
-    height: 200px;
+.menubox{
     position: absolute;
 }
+
+#scoreboard{
+    display: block;
+    position: absolute;
+    display: grid;
+    right: 0px;
+    top: 0px;
+    width: 500px;
+    height: 750px;
+    border: 5px solid black;
+    background-color: grey;
+    z-index: -5;
+}
+.scorebox{
+display: flex;
+border: 2.5px solid black;
+height: 71px;
+width: 500px;
+}
+
+.rank{
+    border: 1px solid black;
+    width: 250px;
+    height: 71px;
+    text-align: center;
+}
+.name{
+     border: 1px solid black;
+    width: 250px;
+    height: 71px;
+    text-align: center;
+}
+
 /* Button Styling */
 .button{
     width: 100px;
@@ -241,8 +272,22 @@
     position: absolute;
     z-index: 10;
 }
-.startgame{
-    display: block;
-    top: 50px;
+
+.leaderboard{
+    top: 80px;
+    left: 300px;
+}
+#inputname{
+    position: absolute;
+    top: 25px;
     left: 50px;
+    margin: auto;
+}
+input[type=submit]{
+    width: 100px;
+    height: 25px;
+    border: 2.5px solid black;
+    background-color: green;
+    position: absolute;
+    z-index: 10;
 }

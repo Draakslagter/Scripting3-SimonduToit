@@ -3,13 +3,17 @@ const character = document.getElementById("character");
 const blocks = document.getElementsByClassName("block");
 const scoreDisplay = document.querySelector(".score");
 const gameOverDisplay = document.querySelector(".gameover");
-const startGameButton = document.querySelector(".startgame")
+const leaderBoard = document.getElementById("scoreboard");
+const inputName = document.getElementById("inputname");
+const ranks = document.getElementsByClassName("rank");
+const boardnames = document.getElementsByClassName("name");
 
 let gameOver = false;
 let blockSpeed = 2;
 let score = 0;
 let scoreInterval = 0;
-
+let currentPlayer = "";
+let scoreboard = [];
 const gameSpeed = 10;
 
 function StartGame() {
@@ -19,8 +23,8 @@ function StartGame() {
     scoreInterval = 0;
     scoreDisplay.innerHTML = "Score: 0";
     blockSpeed = 2;
-    startGameButton.style.display = "none";
     character.classList.add("animaterun");
+    currentPlayer = inputName.fname.value;
     moveBlock();
 }
 
@@ -73,6 +77,33 @@ function UpdateScore() {
     }
 }
 
+function ShowLeaderBoard()
+{
+    if (leaderBoard.style.display == "block")
+    {
+        leaderBoard.style.display = "none";
+    }
+    else
+    {
+        leaderBoard.style.display = "block";
+    }
+}
+
+function UpdateLeaderBoard(){
+    console.log("updating");
+    for (let rank of ranks)
+    {
+        let rankScore = parseInt(rank.innerHTML);
+        console.log(rankScore);
+        if (score > rankScore)
+        {
+            rank.innerHTML = score;
+            console.log(ranks.item(rank));
+            boardnames[ranks.item].innerHTML = currentPlayer;
+        }
+    }
+}
+
 let checkDead = setInterval(function () {
     let characterLeft = parseInt(window.getComputedStyle(character).getPropertyValue("left"));
     for (let block of blocks) {
@@ -81,9 +112,9 @@ let checkDead = setInterval(function () {
         leftright = blockLeft - characterLeft;
         if (leftright >= 5 && leftright <= 40 && blockTop && blockTop >= 600 && blockTop <= 650) {
             gameOverDisplay.style.display = "block";
-            startGameButton.style.display = "block";
             gameOver = true;
             block.style.top = '-500px';
+            UpdateLeaderBoard();
         }
     }
 }, 10);
