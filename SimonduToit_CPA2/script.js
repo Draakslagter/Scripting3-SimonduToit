@@ -9,20 +9,22 @@ const ranks = document.getElementsByClassName("rank");
 const boardnames = document.getElementsByClassName("name");
 
 let gameOver = false;
-let blockSpeed = 2;
+let blockSpeed = 3;
 let score = 0;
 let scoreInterval = 0;
 let currentPlayer = "";
-let scoreboard = [];
+let scoreboard = [{ name: "Le Poisson Steve", score: 500 }, { name: "", score: 0 }, { name: "", score: 0 }, { name: "", score: 0 }, { name: "", score: 0 }, { name: "", score: 0 }, { name: "", score: 0 }, { name: "", score: 0 }, { name: "", score: 0 }, { name: "", score: 0 }];
 const gameSpeed = 10;
 
 function StartGame() {
+    RetrieveScores();
+    UpdateLeaderBoard();
     gameOver = false;
     gameOverDisplay.style.display = "none";
     score = 0;
     scoreInterval = 0;
     scoreDisplay.innerHTML = "Score: 0";
-    blockSpeed = 2;
+    blockSpeed = 3;
     character.classList.add("animaterun");
     currentPlayer = inputName.fname.value;
     moveBlock();
@@ -30,17 +32,16 @@ function StartGame() {
 
 function moveBlock() {
     for (let block of blocks) {
-    const currentTop = parseInt(window.getComputedStyle(block).getPropertyValue('top'));
-    block.style.top = (currentTop + blockSpeed) + 'px';
+        const currentTop = parseInt(window.getComputedStyle(block).getPropertyValue('top'));
+        block.style.top = (currentTop + blockSpeed) + 'px';
 
-    if (currentTop > 800) {
-        block.style.top = '-500px';
-    }
-    }
-    if (gameOver == false)
-        {
-            setTimeout(moveBlock, gameSpeed);
+        if (currentTop > 800) {
+            block.style.top = Math.floor(Math.random() * -500) + "px";
         }
+    }
+    if (gameOver == false) {
+        setTimeout(moveBlock, gameSpeed);
+    }
 }
 
 function Jump() {
@@ -77,31 +78,55 @@ function UpdateScore() {
     }
 }
 
-function ShowLeaderBoard()
-{
-    if (leaderBoard.style.display == "block")
-    {
+function ShowLeaderBoard() {
+    if (leaderBoard.style.display == "grid") {
         leaderBoard.style.display = "none";
     }
-    else
-    {
-        leaderBoard.style.display = "block";
+    else {
+        leaderBoard.style.display = "grid";
     }
 }
 
-function UpdateLeaderBoard(){
-    console.log("updating");
-    for (let rank of ranks)
-    {
-        let rankScore = parseInt(rank.innerHTML);
-        console.log(rankScore);
-        if (score > rankScore)
-        {
-            rank.innerHTML = score;
-            console.log(ranks.item(rank));
-            boardnames[ranks.item].innerHTML = currentPlayer;
+function UpdateLeaderBoard() {
+    for (i = 0; i < 10; i++) {
+        if (score > scoreboard[i].score) {
+            scoreboard.splice(-1);
+            scoreboard.push({ name: currentPlayer, score: score });
+            scoreboard.sort((a, b) => {
+                if (b.score < a.score) {
+                    return -1;
+                }
+                if (b.score > a.score) {
+                    return 1;
+                }
+                return 0;
+            });
+            break;
         }
     }
+    for (i = 0; i < 10; i++) {
+        ranks.item(i).innerHTML = scoreboard[i].score;
+        boardnames.item(i).innerHTML = scoreboard[i].name;
+    }
+    SaveScores();
+}
+
+function SaveScores()
+{
+    if (typeof(Storage) !== "undefined")
+    {
+        for (i = 0; i < 10; i++)
+        {
+            localStorage.setItem("scoreboard" + i, JSON.stringify(scoreboard[i]))
+        }
+    }
+}
+function RetrieveScores()
+{
+    for (i = 0; i < 10; i++)
+        {
+           scoreboard[i] = JSON.parse(localStorage.getItem("scoreboard" + i))
+        }
 }
 
 let checkDead = setInterval(function () {
@@ -115,6 +140,7 @@ let checkDead = setInterval(function () {
             gameOver = true;
             block.style.top = '-500px';
             UpdateLeaderBoard();
+            ShowLeaderBoard();
         }
     }
 }, 10);
