@@ -224,6 +224,17 @@ body
     top: -500px;
 }
 
+#points{
+    width: 25px;
+    height: 25px;
+   position: absolute;
+   left: 50%;
+   top: -500px;
+   background-image: url(Assets/Sprites/Incentive/Apple.png);
+   background-size: contain;
+   background-repeat: no-repeat;
+}
+
 /* Menu Styling */
 #menu{
     margin: auto;
