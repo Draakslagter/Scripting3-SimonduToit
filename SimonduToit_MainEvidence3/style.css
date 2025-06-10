@@ -25,8 +25,18 @@ body {
     color: #ffb8d1;
 }
 
-.block{
-    width: 50px;
-    height: 1000px;
-    background-color: #000000;
+.navbar{
+    background-color: #456990;
+}
+
+.card{
+    background-color: #231123;
+}
+
+.card-text{
+    color: #ffb8d1;
+}
+
+.text-body-secondary{
+    color: #B0C4B1 !important;
 }
