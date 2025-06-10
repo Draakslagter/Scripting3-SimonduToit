@@ -2,7 +2,6 @@
 
 * {
     font-family: "Roboto Slab", serif;
-    color: #000000;
 }
 
 body {
@@ -14,7 +13,7 @@ body {
     font-optical-sizing: auto;
     font-weight: 400;
     font-style: normal;
-    color: #000000;
+    color: white;
 }
 
 .roboto-slab-semibold {
@@ -26,11 +25,11 @@ body {
 }
 
 .navbar{
-    background-color: #456990;
+    background-color: #231123;
 }
 
 .card{
-    background-color: #231123;
+    background-color: #456990;
 }
 
 .card-text{
